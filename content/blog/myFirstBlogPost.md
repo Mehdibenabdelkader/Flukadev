@@ -28,7 +28,7 @@ As stated earlier, and in a world that's constantly changing and evolving, leavi
 
 > “You are the average of the five people you spend the most time with.”
 
-And I believe it's true, your surrounding have a direct influence on who you are, Your close friends and family affect to which attitudes and behaviors you are regularly exposed, and I can confidently affirm that these people for me are a catalyst to take action. They encouraged me to take the leap, their belief in my voice and the unique perspectives I bring to the table played a crucial role in giving me the confidence to begin this project and that's why you'll be hearing about them more often so stay tuned.
+And I believe it's true, your surrounding have a direct influence on who you are, Your close friends and family affect to which attitudes and behaviors you are regularly exposed, and I can confidently affirm that these people, for me are a catalyst to take action. They encouraged me to take the leap, their belief in my voice and the unique perspectives I bring to the table played a crucial role in giving me the confidence to begin this project and that's why you'll be hearing about them more often so stay tuned.
 
 
 ## Conclusion

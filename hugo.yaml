@@ -17,7 +17,7 @@ params:
         - name: Blog
           url: ./blog
         - name: About
-          url: ./about
+          url: ./about/aboutpage/
     
     socialIcons: 
         - name: "twitter"
