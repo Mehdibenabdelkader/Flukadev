@@ -1,0 +1,31 @@
+baseURL: 'https://Mehdibenabdelkader.github.io/Flukadev/'
+languageCode: en-us
+title: FLUKA
+theme: PaperMod
+params:
+    profileMode:
+      enabled: true
+      title: Mehdi Benabdelkader
+      subtitle: "Awesome Developer, Awesomer Designer"
+      imageUrl: "./AnaLabesGrafata.png"
+
+      imageWidth: 150
+      imageHeight: 150
+      imageTitle: Ana Labes Grafata
+      buttons:
+        - name: Posts
+          url: ./docs
+        - name: Tags
+          url: ./tags
+        - name: Archives
+          url: ./archives
+    
+    socialIcons: 
+        - name: "twitter"
+          url: "https://twitter.com/B_MehdiFluka"
+        - name: "instagram"
+          url: "https://www.instagram.com/_fluka/?hl=en"
+        - name: "github"
+          url: "https://github.com/Mehdibenabdelkader"
+        - name: "linkedin"
+          url: "https://www.linkedin.com/in/mehdi-benabdelkader-059614224/"  
