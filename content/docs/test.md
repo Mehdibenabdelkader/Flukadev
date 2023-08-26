@@ -5,6 +5,7 @@ draft: false
 ---
 
 
-### wlahila kanbghik .
+### wlahila kanbghik.
 
+lay3tik str rana i am still figuring this out
 lay3tik str rana i am still figuring this out
