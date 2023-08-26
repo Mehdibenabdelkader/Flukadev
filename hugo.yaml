@@ -19,12 +19,15 @@ params:
         - name: About
           url: ./about/aboutpage/
     
-    socialIcons: 
+    socialIcons:
+        - name: "linkedin"
+          url: "https://www.linkedin.com/in/mehdi-benabdelkader-059614224/" 
+        - name: "behance"
+          url: "https://www.behance.net/mehdiben5"
         - name: "twitter"
           url: "https://twitter.com/B_MehdiFluka"
         - name: "instagram"
           url: "https://www.instagram.com/_fluka/?hl=en"
         - name: "github"
           url: "https://github.com/Mehdibenabdelkader"
-        - name: "linkedin"
-          url: "https://www.linkedin.com/in/mehdi-benabdelkader-059614224/"  
+         
