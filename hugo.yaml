@@ -13,7 +13,7 @@ params:
 
       imageWidth: 150
       imageHeight: 150
-      imageTitle: Ana Labes Grafata
+      imageTitle: Ana Labes Grafata.
       buttons:
         - name: Blog
           url: ./blog
