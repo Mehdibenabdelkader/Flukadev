@@ -6,14 +6,32 @@
     <description>Recent content in Docs on FLUKA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 23 Aug 2023 21:11:45 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/docs/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 26 Aug 2023 02:35:56 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/docs/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Sm7iliya ha l3ar</title>
+      <title>MyFirstBlogPost</title>
+      <link>https://Mehdibenabdelkader.github.io/Flukadev/docs/myfirstblogpost/</link>
+      <pubDate>Sat, 26 Aug 2023 02:35:56 +0100</pubDate>
+      
+      <guid>https://Mehdibenabdelkader.github.io/Flukadev/docs/myfirstblogpost/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>https://Mehdibenabdelkader.github.io/Flukadev/docs/test-copie/</link>
+      <pubDate>Wed, 23 Aug 2023 21:11:45 +0100</pubDate>
+      
+      <guid>https://Mehdibenabdelkader.github.io/Flukadev/docs/test-copie/</guid>
+      <description>wlahila kanbghik. </description>
+    </item>
+    
+    <item>
+      <title>test</title>
       <link>https://Mehdibenabdelkader.github.io/Flukadev/docs/test/</link>
       <pubDate>Wed, 23 Aug 2023 21:11:45 +0100</pubDate>
       
       <guid>https://Mehdibenabdelkader.github.io/Flukadev/docs/test/</guid>
-      <description>wlahila kanbghik. lay3tik str rana i am still figuring this out lay3tik str rana i am still figuring this out</description>
+      <description>wlahila kanbghik. </description>
     </item>
     
   </channel>

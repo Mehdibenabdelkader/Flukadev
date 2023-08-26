@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>My Blog on FLUKA</title>
+    <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/</link>
+    <description>Recent content in My Blog on FLUKA</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 26 Aug 2023 14:46:47 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/blog/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Story Behind My First Blog</title>
+      <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/myfirstblogpost/</link>
+      <pubDate>Sat, 26 Aug 2023 02:38:35 +0100</pubDate>
+      
+      <guid>https://Mehdibenabdelkader.github.io/Flukadev/blog/myfirstblogpost/</guid>
+      <description>In the vast digital landscape of the internet, where humanity&amp;rsquo;s thoughts, ideas, and experiences converge, there&amp;rsquo;s something truly magical about carving out your own little corner to share your voice, even though it might appear as another droplet in the a never ending digital sea. Writing a blog is far more than just slapping words on a screen; it&amp;rsquo;s about embracing creativity, the itch to connect and the desire to share with others.</description>
+    </item>
+    
+  </channel>
+</rss>
