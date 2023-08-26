@@ -2,8 +2,8 @@ baseURL: 'https://Mehdibenabdelkader.github.io/Flukadev/'
 languageCode: en-us
 title: FLUKA
 theme: PaperMod
+googleAnalytics: G-KFZSHSXH46
 params:
-    googleAnalytics: G-KFZSHSXH46
     ShowReadingTime: true
     profileMode:
       enabled: true
