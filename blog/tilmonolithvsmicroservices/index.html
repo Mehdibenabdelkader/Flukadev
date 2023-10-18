@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Today I Learned : Monolith vs Microservices | FLUKA</title>
+<meta name="keywords" content="">
+<meta name="description" content="&ldquo;There are only two ways to lead: you either divide and conquer, or you build and unite.&rdquo;
+This concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems. And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices.">
+<meta name="author" content="">
+<link rel="canonical" href="https://Mehdibenabdelkader.github.io/Flukadev/blog/tilmonolithvsmicroservices/">
+<link crossorigin="anonymous" href="/Flukadev/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/Flukadev/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFZSHSXH46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-KFZSHSXH46', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Today I Learned : Monolith vs Microservices" />
+<meta property="og:description" content="&ldquo;There are only two ways to lead: you either divide and conquer, or you build and unite.&rdquo;
+This concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems. And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Mehdibenabdelkader.github.io/Flukadev/blog/tilmonolithvsmicroservices/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-10-18T17:33:30+01:00" />
+<meta property="article:modified_time" content="2023-10-18T17:33:30+01:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Today I Learned : Monolith vs Microservices"/>
+<meta name="twitter:description" content="&ldquo;There are only two ways to lead: you either divide and conquer, or you build and unite.&rdquo;
+This concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems. And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "My Blog",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Today I Learned : Monolith vs Microservices",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/tilmonolithvsmicroservices/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Today I Learned : Monolith vs Microservices",
+  "name": "Today I Learned : Monolith vs Microservices",
+  "description": "\u0026ldquo;There are only two ways to lead: you either divide and conquer, or you build and unite.\u0026rdquo;\nThis concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems. And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices.",
+  "keywords": [
+    
+  ],
+  "articleBody": " “There are only two ways to lead: you either divide and conquer, or you build and unite.”\nThis concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems. And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices. What I discovered not only clarified the distinction but also highlighted the importance of working in small, manageable chunks.\nThe Monolith: An elephant in the Room First, let’s talk about the monolithic architecture. IT’S LITERALLY A GIANT, all-encompassing piece of software that contains all its components tightly integrated. Everything, from the user interface to the database, is bundled into one massive unit. While this may seem convenient initially, it can lead to several challenges.\nOne of the most significant issues with monoliths is scalability. As your application grows, you might need to scale the entire blob of software, even if only one specific component requires additional resources (this process takes up to 6 months in big companies). This leads to inefficiency, increased costs, and potential performance bottlenecks.\nAdditionally, imagine having a pet elephant, maintaining monolithic code can be an overwhelming task. Every change made to a monolith can have unintended consequences throughout the entire system. The risk of breaking something elsewhere in the application looms over every developer’s head. Furthermore, onboarding new team members can be a daunting process due to the complex nature of monolithic codebase, which gave birth to all the junior-senior programmers memes we see today.\nThe Rise of Microservices: Working in Small Chunks On the other side of the architectural spectrum, we have microservices. Microservices break down an application into smaller, individual services that can be developed, deployed, and scaled independently. Each service focuses on a specific business functionality, resulting in a modular and more agile architecture.\nWhat’s amazing about microservices is the ability to scale only the components that require it, avoiding the over-scaling issue that plagues monoliths. This efficiency can translate to cost savings and better performance. and knowing that services are independent, they can be developed and maintained by small, dedicated teams, simplifying the onboarding process for new developers.\nI realized that microservices promote a mindset of working in small, manageable chunks. This approach has far-reaching benefits beyond just architecture:\n1. Flexibility: Microservices allow you to pivot swiftly when market demands change or new features need to be implemented. You can iterate on specific services without affecting the entire application.\n2. Robustness: Failure in one microservice doesn’t necessarily mean a system-wide outage. The isolation of services helps to contain issues and maintain system availability.\n3. Scalability: Scaling only the components under load is a more cost-effective approach than scaling an entire monolith. Microservices make efficient use of resources.\n4. Team Empowerment: Smaller teams can take ownership of specific services, leading to faster development and more focused expertise.\n5. Continuous Deployment: Microservices can be deployed independently, enabling more frequent releases and faster response to customer needs, and with the power of automation, the deployement of new pieces of software becomes a piece of cake for both the dev and operation teams.\nEmbracing the Power of Small Chunks In conclusion, my exploration into the world of devops taught me the importance of working in small, manageable chunks. While monolithic architectures have their place, microservices offer an attractive alternative for projects that demand agility, scalability, and maintainability.\nBy breaking down applications into smaller pieces, we can unlock the potential for more efficient development, deployment, and maintenance. and knowing that devops is more than just tools and theory, but rather a culture; adopting this architecture facilitates how teams collaborate, how projects evolve, and how organizations adapt to changing market dynamics.\nThis new perspective goes beyond just software development, it’s a way to live ! So, on your own journey to greatness, remember the lesson I learned today – Divide to conquer, think small, think microservices.\n",
+  "wordCount" : "682",
+  "inLanguage": "en",
+  "datePublished": "2023-10-18T17:33:30+01:00",
+  "dateModified": "2023-10-18T17:33:30+01:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Mehdibenabdelkader.github.io/Flukadev/blog/tilmonolithvsmicroservices/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "FLUKA",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Mehdibenabdelkader.github.io/Flukadev/" accesskey="h" title="FLUKA (Alt + H)">FLUKA</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Today I Learned : Monolith vs Microservices
+    </h1>
+    <div class="post-meta"><span title='2023-10-18 17:33:30 +0100 +0100'>October 18, 2023</span>&nbsp;·&nbsp;4 min
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>&ldquo;There are only two ways to lead: you either divide and conquer, or you build and unite.&rdquo;</p>
+</blockquote>
+<p>This concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems.
+And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices. What I discovered not only clarified the distinction but also highlighted the importance of working in small, manageable chunks.</p>
+<h2 id="the-monolith-an-elephant-in-the-room">The Monolith: An elephant in the Room<a hidden class="anchor" aria-hidden="true" href="#the-monolith-an-elephant-in-the-room">#</a></h2>
+<p>First, let&rsquo;s talk about the monolithic architecture. IT&rsquo;S LITERALLY A GIANT, all-encompassing piece of software that contains all its components tightly integrated. Everything, from the user interface to the database, is bundled into one massive unit. While this may seem convenient initially, it can lead to several challenges.</p>
+<p>One of the most significant issues with monoliths is scalability. As your application grows, you might need to scale the entire blob of software, even if only one specific component requires additional resources (this process takes up to 6 months in big companies). This leads to inefficiency, increased costs, and potential performance bottlenecks.</p>
+<p>Additionally, imagine having a pet elephant, maintaining monolithic code can be an overwhelming task. Every change made to a monolith can have unintended consequences throughout the entire system. The risk of breaking something elsewhere in the application looms over every developer&rsquo;s head. Furthermore, onboarding new team members can be a daunting process due to the complex nature of monolithic codebase, which gave birth to all the junior-senior programmers memes we see today.</p>
+<h2 id="the-rise-of-microservices-working-in-small-chunks">The Rise of Microservices: Working in Small Chunks<a hidden class="anchor" aria-hidden="true" href="#the-rise-of-microservices-working-in-small-chunks">#</a></h2>
+<p>On the other side of the architectural spectrum, we have microservices. Microservices break down an application into smaller, individual services that can be developed, deployed, and scaled independently. Each service focuses on a specific business functionality, resulting in a modular and more agile architecture.</p>
+<p>What&rsquo;s amazing about microservices is the ability to scale only the components that require it, avoiding the over-scaling issue that plagues monoliths. This efficiency can translate to cost savings and better performance. and knowing that services are independent, they can be developed and maintained by small, dedicated teams, simplifying the onboarding process for new developers.</p>
+<p>I realized that microservices promote a mindset of working in small, manageable chunks. This approach has far-reaching benefits beyond just architecture:</p>
+<h3 id="1-flexibility">1. <strong>Flexibility</strong>:<a hidden class="anchor" aria-hidden="true" href="#1-flexibility">#</a></h3>
+<p>Microservices allow you to pivot swiftly when market demands change or new features need to be implemented. You can iterate on specific services without affecting the entire application.</p>
+<h3 id="2-robustness">2. <strong>Robustness</strong>:<a hidden class="anchor" aria-hidden="true" href="#2-robustness">#</a></h3>
+<p>Failure in one microservice doesn&rsquo;t necessarily mean a system-wide outage. The isolation of services helps to contain issues and maintain system availability.</p>
+<h3 id="3-scalability">3. <strong>Scalability</strong>:<a hidden class="anchor" aria-hidden="true" href="#3-scalability">#</a></h3>
+<p>Scaling only the components under load is a more cost-effective approach than scaling an entire monolith. Microservices make efficient use of resources.</p>
+<h3 id="4-team-empowerment">4. <strong>Team Empowerment</strong>:<a hidden class="anchor" aria-hidden="true" href="#4-team-empowerment">#</a></h3>
+<p>Smaller teams can take ownership of specific services, leading to faster development and more focused expertise.</p>
+<h3 id="5-continuous-deployment">5. <strong>Continuous Deployment</strong>:<a hidden class="anchor" aria-hidden="true" href="#5-continuous-deployment">#</a></h3>
+<p>Microservices can be deployed independently, enabling more frequent releases and faster response to customer needs, and with the power of automation, the deployement of new pieces of software becomes a piece of cake for both the dev and operation teams.</p>
+<h3 id="embracing-the-power-of-small-chunks">Embracing the Power of Small Chunks<a hidden class="anchor" aria-hidden="true" href="#embracing-the-power-of-small-chunks">#</a></h3>
+<p>In conclusion, my exploration into the world of devops taught me the importance of working in small, manageable chunks. While monolithic architectures have their place, microservices offer an attractive alternative for projects that demand agility, scalability, and maintainability.</p>
+<p>By breaking down applications into smaller pieces, we can unlock the potential for more efficient development, deployment, and maintenance. and knowing that devops is more than just tools and theory, but rather a culture; adopting this architecture facilitates how teams collaborate, how projects evolve, and how organizations adapt to changing market dynamics.</p>
+<p>This new perspective goes beyond just software development, it&rsquo;s a way to live ! So, on your own journey to greatness, remember the lesson I learned today – Divide to conquer, think small, think microservices.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://Mehdibenabdelkader.github.io/Flukadev/">FLUKA</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
