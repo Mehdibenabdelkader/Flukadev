@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Infrastructure as Code (IaC): A Beginner&#39;s Guide | FLUKA</title>
+<meta name="keywords" content="">
+<meta name="description" content="Since the day I decided to embark on the journey to discover the field of devops, Infrastructure as Code (IaC) was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh).">
+<meta name="author" content="">
+<link rel="canonical" href="https://Mehdibenabdelkader.github.io/Flukadev/blog/iac/">
+<link crossorigin="anonymous" href="/Flukadev/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/Flukadev/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFZSHSXH46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-KFZSHSXH46', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Infrastructure as Code (IaC): A Beginner&#39;s Guide" />
+<meta property="og:description" content="Since the day I decided to embark on the journey to discover the field of devops, Infrastructure as Code (IaC) was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh)." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Mehdibenabdelkader.github.io/Flukadev/blog/iac/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-10-25T10:46:08+01:00" />
+<meta property="article:modified_time" content="2023-10-25T10:46:08+01:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Infrastructure as Code (IaC): A Beginner&#39;s Guide"/>
+<meta name="twitter:description" content="Since the day I decided to embark on the journey to discover the field of devops, Infrastructure as Code (IaC) was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh)."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "My Blog",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Infrastructure as Code (IaC): A Beginner's Guide",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/iac/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Infrastructure as Code (IaC): A Beginner's Guide",
+  "name": "Infrastructure as Code (IaC): A Beginner\u0027s Guide",
+  "description": "Since the day I decided to embark on the journey to discover the field of devops, Infrastructure as Code (IaC) was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh).",
+  "keywords": [
+    
+  ],
+  "articleBody": "Since the day I decided to embark on the journey to discover the field of devops, Infrastructure as Code (IaC) was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh). WELL NOT ANYMORE, I woke up and decided it’s time to pick up a challenge and that’s when I started finding answers to my questions : what exactly is Iac, and why should I care about it? In this article I am sharing what I learned about this topic :\nSo What is Infrastructure as Code (IaC)? Infrastructure as Code, often abbreviated as IaC, is a methodology that enables developers to manage and provision infrastructure resources through code, rather than manual processes or configuration files. In other words, it’s the practice of treating your foundation – such as servers, databases, and networks – as code that can be versioned, tested, and automated.\nThe core idea is to define your infrastructure using a domain-specific language or a configuration file. This code is then processed by IaC tools to create, modify, or delete resources in a consistent and repeatable manner, this way all changes will be documented in a script, and it only takes few clicks to provision a new enviroment similar to the production enviroment, useful for testing new features before pushing them live.\nWhy is IaC Important? IaC offers a host of benefits that make it a game-changer in the world of IT and software development:\nConsistency: It ensures that your underlying structure is consistent across all environments. Whether you’re deploying to development, testing, or production, you can be confident that the infrastructure will match (unless of course you changed the code).\nVersion Control: Just like software code, you can use version control systems like Git to track changes to your infrastructure code. This means you can roll back to previous states, collaborate with others, and manage changes more effectively.\nAutomation: IaC enables automation of infrastructure provisioning and management. This reduces human error and accelerates the deployment process, making it more reliable and efficient.\nScalability: As your infrastructure needs grow, IaC can easily scale with you. You can change the size of your infrastructure with a few lines of code, ensuring that it evolves with your requirements.\nDocumentation: Your infrastructure code serves as living documentation. Anyone can understand and replicate the infrastructure, as it’s all documented in the code.\nThe Technical Aspects of IaC Now, let’s dive into some of the technical aspects that underpin Infrastructure as Code:\n1. IaC Tools Several IaC tools are available, each with its unique strengths. Here are a few popular ones:\nTerraform: Terraform is an open-source tool by HashiCorp. It uses a declarative language to define infrastructure and supports a wide range of cloud providers and services.\nAWS CloudFormation: If you’re working with Amazon Web Services, CloudFormation allows you to define AWS resources in JSON or YAML templates.\nAnsible: Ansible is more agentless and can configure servers, applications, and infrastructure using simple YAML files.\n2. Declarative vs. Imperative IaC There are two approaches to IaC: declarative and imperative.\nDeclarative: In this approach, you define the desired end state of your infrastructure. Tools like Terraform typically follow this approach, where you specify what you want, and the tool figures out how to get there.\nImperative: Ansible, for example, follows an imperative approach. You specify the exact steps to take to reach the desired state.\n3. Testing and Continuous Integration Just as with traditional software development, you can write tests for your infrastructure code to catch issues early. Integrating IaC into your CI/CD pipeline ensures that your infrastructure changes are thoroughly tested before they are deployed.\nInfrastructure as Code may seem complex at first, (especially for begginners) but the benefits it offers are worth exploring. it provides many features and shortcuts, mainly that you don’t have to keep patching one instance of the infrastructure : if it breaks, delete and run a new one, making your life as a developer or operations engineer easier.\nStart small, experiment with one of the tools, and gradually work your way up. And never let buzzwords intimidate you or hinder your learning experience.\nThat’s all for today, Thank you for reading! See you next time \u003c3\n",
+  "wordCount" : "745",
+  "inLanguage": "en",
+  "datePublished": "2023-10-25T10:46:08+01:00",
+  "dateModified": "2023-10-25T10:46:08+01:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Mehdibenabdelkader.github.io/Flukadev/blog/iac/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "FLUKA",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Mehdibenabdelkader.github.io/Flukadev/" accesskey="h" title="FLUKA (Alt + H)">FLUKA</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Infrastructure as Code (IaC): A Beginner&#39;s Guide
+    </h1>
+    <div class="post-meta"><span title='2023-10-25 10:46:08 +0100 +0100'>October 25, 2023</span>&nbsp;·&nbsp;4 min
+
+</div>
+  </header> 
+  <div class="post-content"><p>Since the day I decided to embark on the journey to discover the field of devops, <strong>Infrastructure as Code (IaC)</strong> was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh). WELL NOT ANYMORE, I woke up and decided it&rsquo;s time to pick up a challenge and that&rsquo;s when I started finding answers to my questions : what exactly is Iac, and why should I care about it? In this article I am sharing what I learned about this topic :</p>
+<h2 id="so-what-is-infrastructure-as-code-iac">So What is Infrastructure as Code (IaC)?<a hidden class="anchor" aria-hidden="true" href="#so-what-is-infrastructure-as-code-iac">#</a></h2>
+<p>Infrastructure as Code, often abbreviated as IaC, is a methodology that enables developers to manage and provision infrastructure resources through code, rather than manual processes or configuration files. In other words, it&rsquo;s the practice of treating your foundation – such as servers, databases, and networks – as code that can be versioned, tested, and automated.</p>
+<p>The core idea is to define your infrastructure using a domain-specific language or a configuration file. This code is then processed by IaC tools to create, modify, or delete resources in a consistent and repeatable manner, this way all changes will be documented in a script, and it only takes few clicks to provision a new enviroment similar to the production enviroment, useful for testing new features before pushing them live.</p>
+<h2 id="why-is-iac-important">Why is IaC Important?<a hidden class="anchor" aria-hidden="true" href="#why-is-iac-important">#</a></h2>
+<p>IaC offers a host of benefits that make it a game-changer in the world of IT and software development:</p>
+<ol>
+<li>
+<p><strong>Consistency:</strong> It ensures that your underlying structure is consistent across all environments. Whether you&rsquo;re deploying to development, testing, or production, you can be confident that the infrastructure will match (unless of course you changed the code).</p>
+</li>
+<li>
+<p><strong>Version Control:</strong> Just like software code, you can use version control systems like Git to track changes to your infrastructure code. This means you can roll back to previous states, collaborate with others, and manage changes more effectively.</p>
+</li>
+<li>
+<p><strong>Automation:</strong> IaC enables automation of infrastructure provisioning and management. This reduces human error and accelerates the deployment process, making it more reliable and efficient.</p>
+</li>
+<li>
+<p><strong>Scalability:</strong> As your infrastructure needs grow, IaC can easily scale with you. You can change the size of your infrastructure with a few lines of code, ensuring that it evolves with your requirements.</p>
+</li>
+<li>
+<p><strong>Documentation:</strong> Your infrastructure code serves as living documentation. Anyone can understand and replicate the infrastructure, as it&rsquo;s all documented in the code.</p>
+</li>
+</ol>
+<h2 id="the-technical-aspects-of-iac">The Technical Aspects of IaC<a hidden class="anchor" aria-hidden="true" href="#the-technical-aspects-of-iac">#</a></h2>
+<p>Now, let&rsquo;s dive into some of the technical aspects that underpin Infrastructure as Code:</p>
+<h3 id="1-iac-tools">1. IaC Tools<a hidden class="anchor" aria-hidden="true" href="#1-iac-tools">#</a></h3>
+<p>Several IaC tools are available, each with its unique strengths. Here are a few popular ones:</p>
+<ul>
+<li>
+<p><strong>Terraform:</strong> Terraform is an open-source tool by HashiCorp. It uses a declarative language to define infrastructure and supports a wide range of cloud providers and services.</p>
+</li>
+<li>
+<p><strong>AWS CloudFormation:</strong> If you&rsquo;re working with Amazon Web Services, CloudFormation allows you to define AWS resources in JSON or YAML templates.</p>
+</li>
+<li>
+<p><strong>Ansible:</strong> Ansible is more agentless and can configure servers, applications, and infrastructure using simple YAML files.</p>
+</li>
+</ul>
+<h3 id="2-declarative-vs-imperative-iac">2. Declarative vs. Imperative IaC<a hidden class="anchor" aria-hidden="true" href="#2-declarative-vs-imperative-iac">#</a></h3>
+<p>There are two approaches to IaC: declarative and imperative.</p>
+<ul>
+<li>
+<p><strong>Declarative:</strong> In this approach, you define the desired end state of your infrastructure. Tools like Terraform typically follow this approach, where you specify what you want, and the tool figures out how to get there.</p>
+</li>
+<li>
+<p><strong>Imperative:</strong> Ansible, for example, follows an imperative approach. You specify the exact steps to take to reach the desired state.</p>
+</li>
+</ul>
+<h3 id="3-testing-and-continuous-integration">3. Testing and Continuous Integration<a hidden class="anchor" aria-hidden="true" href="#3-testing-and-continuous-integration">#</a></h3>
+<p>Just as with traditional software development, you can write tests for your infrastructure code to catch issues early. Integrating IaC into your CI/CD pipeline ensures that your infrastructure changes are thoroughly tested before they are deployed.</p>
+<p>Infrastructure as Code may seem complex at first, (especially for begginners) but the benefits it offers are worth exploring. it provides many features and shortcuts, mainly that you don&rsquo;t have to keep patching one instance of the infrastructure : if it breaks, delete and run a new one, making your life as a developer or operations engineer easier.</p>
+<p>Start small, experiment with one of the tools, and gradually work your way up. And never let buzzwords intimidate you or hinder your learning experience.</p>
+<p>That’s all for today, Thank you for reading! See you next time &lt;3</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://Mehdibenabdelkader.github.io/Flukadev/">FLUKA</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
