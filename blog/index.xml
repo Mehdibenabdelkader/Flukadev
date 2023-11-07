@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Sat, 26 Aug 2023 14:46:47 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/blog/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Today I learned : Containers</title>
+      <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/containers/</link>
+      <pubDate>Tue, 07 Nov 2023 13:34:04 +0100</pubDate>
+      
+      <guid>https://Mehdibenabdelkader.github.io/Flukadev/blog/containers/</guid>
+      <description>Another day, and another buzzword to learn. As I am learning more and more about new concepts I find out that some topics I used to think are impossible to grasp - because of confusing they can be - are pretty simple (even fun sometimes) when you put you&amp;rsquo;re mind to it and approach it the right way, Today&amp;rsquo;s topic will be all about containers. First I thought this was just a funny comparaison that people used to explain how to deliver software, but turns out it&amp;rsquo;s actually a thing : the same way a we ship goodies from a country to a country, we can ship software (the computer goodies) from a computer to another.</description>
+    </item>
+    
+    <item>
       <title>Load Balancing : A piece of cake</title>
       <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/loadbalancing/</link>
       <pubDate>Sat, 04 Nov 2023 08:55:23 +0100</pubDate>
