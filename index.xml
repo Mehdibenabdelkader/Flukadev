@@ -6,7 +6,18 @@
     <description>Recent content on FLUKA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Nov 2023 13:34:04 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 Nov 2023 16:32:11 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Book Review : Build Your Second Brain</title>
+      <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/notetaking/</link>
+      <pubDate>Thu, 09 Nov 2023 16:32:11 +0100</pubDate>
+      
+      <guid>https://Mehdibenabdelkader.github.io/Flukadev/blog/notetaking/</guid>
+      <description>I decided to take a break from learn the technicalities and take a look at the systems and tools I set in place to make my journey easier, after all Abraham Lincoln was quoted as saying :
+“ Give me six hours to chop down a tree and I will spend the first four sharpening the ax. ”
+Under the light of this idea I decided to read a book (Very Big deal, I rarely read), &amp;ldquo;Building a Second Brain&amp;rdquo; is a book by Tiago Forte that explores the concept of creating a digital system to augment your thinking and productivity.</description>
+    </item>
+    
     <item>
       <title>Today I learned : Containers</title>
       <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/containers/</link>
