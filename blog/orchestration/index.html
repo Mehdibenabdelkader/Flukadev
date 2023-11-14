@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Kubernetes Orchestrates Your Container Symphony: A Conductor&#39;s Tale | FLUKA</title>
+<meta name="keywords" content="">
+<meta name="description" content="Introduction: Setting the Stage Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.
+Now let&rsquo;s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user.">
+<meta name="author" content="">
+<link rel="canonical" href="https://Mehdibenabdelkader.github.io/Flukadev/blog/orchestration/">
+<link crossorigin="anonymous" href="/Flukadev/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/Flukadev/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFZSHSXH46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-KFZSHSXH46', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Kubernetes Orchestrates Your Container Symphony: A Conductor&#39;s Tale" />
+<meta property="og:description" content="Introduction: Setting the Stage Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.
+Now let&rsquo;s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Mehdibenabdelkader.github.io/Flukadev/blog/orchestration/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2023-11-14T10:26:38+01:00" />
+<meta property="article:modified_time" content="2023-11-14T10:26:38+01:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Kubernetes Orchestrates Your Container Symphony: A Conductor&#39;s Tale"/>
+<meta name="twitter:description" content="Introduction: Setting the Stage Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.
+Now let&rsquo;s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "My Blog",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Kubernetes Orchestrates Your Container Symphony: A Conductor's Tale",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/orchestration/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Kubernetes Orchestrates Your Container Symphony: A Conductor's Tale",
+  "name": "Kubernetes Orchestrates Your Container Symphony: A Conductor\u0027s Tale",
+  "description": "Introduction: Setting the Stage Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.\nNow let\u0026rsquo;s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Introduction: Setting the Stage Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.\nNow let’s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user.\nAct 1: Kubernetes as the Maestro In the world of containers, where applications are bundled with all dependencies, Kubernetes takes on the role of a conductor. It orchestrates and coordinates the deployment, scaling, and management of these containers to ensure a harmonious performance. Like a maestro guiding musicians, Kubernetes directs the flow of containers, ensuring they work seamlessly together.\nAct 2: Meet the band Pods: The Musicians\nIn Kubernetes, the smallest deployable units are called pods. A pod can house one or more containers, sharing the same network namespace and storage. Just as musicians collaborate to produce a unified sound, containers within a pod collaborate to deliver a specific functionality.\nDeployments: Sheet Music for the Orchestra\nDeployments define the desired state for the application, specifying how many replicas of a pod should be running. Like sheet music guiding musicians on what to play, deployments guide Kubernetes on how to maintain and update the application.\nServices: The Audience Interface\nServices enable communication between different parts of an application, providing a stable endpoint. Think of it as the way the orchestra communicates with the audience – through a well-defined interface. Services ensure that no matter how the performance evolves, the audience (users) can always connect to the orchestra (application).\nReplicaSets: Harmonizers\nReplicaSets maintain the desired number of replicas specified by the deployment. If a pod fails or needs updating, the ReplicaSet ensures that the desired number of replicas are running, maintaining the harmony of the application.\nAct 3: A behind the scenes pass Let’s step behind the scenes with a simple example. Imagine an application that comprises a web front-end and a database. The YAML code snippet below represents a basic Kubernetes configuration for this scenario:\napiVersion: apps/v1 kind: Deployment metadata: name: webapp spec: replicas: 3 selector: matchLabels: app: webapp template: metadata: labels: app: webapp spec: containers: - name: frontend image: my-webapp-image:latest --- apiVersion: v1 kind: Service metadata: name: webapp-service spec: selector: app: webapp ports: - protocol: TCP port: 80 targetPort: 8080 Conclusion: The Grand Performance Before the curtain falls, and just as a conductor puts in line all the musician to deliver ART, Kubernetes orchestrates containers to deliver reliable, scalable, and maintainable applications. I hope this article is a front-row seat to the orchestration of a container symphony. See you in the next one \u003c3\n",
+  "wordCount" : "479",
+  "inLanguage": "en",
+  "datePublished": "2023-11-14T10:26:38+01:00",
+  "dateModified": "2023-11-14T10:26:38+01:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Mehdibenabdelkader.github.io/Flukadev/blog/orchestration/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "FLUKA",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Mehdibenabdelkader.github.io/Flukadev/" accesskey="h" title="FLUKA (Alt + H)">FLUKA</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Kubernetes Orchestrates Your Container Symphony: A Conductor&#39;s Tale
+    </h1>
+    <div class="post-meta"><span title='2023-11-14 10:26:38 +0100 +0100'>November 14, 2023</span>&nbsp;·&nbsp;3 min
+
+</div>
+  </header> <div class="toc">
+    <details >
+        <summary accesskey="c" title="(Alt + C)">
+            <span class="details">Table of Contents</span>
+        </summary>
+
+        <div class="inner"><ul>
+                <li>
+                    <a href="#introduction-setting-the-stage" aria-label="Introduction: Setting the Stage">Introduction: Setting the Stage</a></li>
+                <li>
+                    <a href="#act-1-kubernetes-as-the-maestro" aria-label="Act 1: Kubernetes as the Maestro">Act 1: Kubernetes as the Maestro</a></li>
+                <li>
+                    <a href="#act-2-meet-the-band" aria-label="Act 2: Meet the band">Act 2: Meet the band</a></li>
+                <li>
+                    <a href="#act-3-a-behind-the-scenes-pass" aria-label="Act 3: A behind the scenes pass">Act 3: A behind the scenes pass</a></li>
+                <li>
+                    <a href="#conclusion-the-grand-performance" aria-label="Conclusion: The Grand Performance">Conclusion: The Grand Performance</a>
+                </li>
+            </ul>
+        </div>
+    </details>
+</div>
+
+  <div class="post-content"><h2 id="introduction-setting-the-stage">Introduction: Setting the Stage<a hidden class="anchor" aria-hidden="true" href="#introduction-setting-the-stage">#</a></h2>
+<p>Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.</p>
+<p>Now let&rsquo;s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user.</p>
+<h2 id="act-1-kubernetes-as-the-maestro">Act 1: Kubernetes as the Maestro<a hidden class="anchor" aria-hidden="true" href="#act-1-kubernetes-as-the-maestro">#</a></h2>
+<p>In the world of containers, where applications are bundled with all dependencies, Kubernetes takes on the role of a conductor. It orchestrates and coordinates the deployment, scaling, and management of these containers to ensure a harmonious performance. Like a maestro guiding musicians, Kubernetes directs the flow of containers, ensuring they work seamlessly together.</p>
+<h2 id="act-2-meet-the-band">Act 2: Meet the band<a hidden class="anchor" aria-hidden="true" href="#act-2-meet-the-band">#</a></h2>
+<ul>
+<li>
+<p><strong>Pods: The Musicians</strong><br>
+In Kubernetes, the smallest deployable units are called pods. A pod can house one or more containers, sharing the same network namespace and storage. Just as musicians collaborate to produce a unified sound, containers within a pod collaborate to deliver a specific functionality.</p>
+</li>
+<li>
+<p><strong>Deployments: Sheet Music for the Orchestra</strong><br>
+Deployments define the desired state for the application, specifying how many replicas of a pod should be running. Like sheet music guiding musicians on what to play, deployments guide Kubernetes on how to maintain and update the application.</p>
+</li>
+<li>
+<p><strong>Services: The Audience Interface</strong><br>
+Services enable communication between different parts of an application, providing a stable endpoint. Think of it as the way the orchestra communicates with the audience – through a well-defined interface. Services ensure that no matter how the performance evolves, the audience (users) can always connect to the orchestra (application).</p>
+</li>
+<li>
+<p><strong>ReplicaSets: Harmonizers</strong><br>
+ReplicaSets maintain the desired number of replicas specified by the deployment. If a pod fails or needs updating, the ReplicaSet ensures that the desired number of replicas are running, maintaining the harmony of the application.</p>
+</li>
+</ul>
+<h2 id="act-3-a-behind-the-scenes-pass">Act 3: A behind the scenes pass<a hidden class="anchor" aria-hidden="true" href="#act-3-a-behind-the-scenes-pass">#</a></h2>
+<p>Let&rsquo;s step behind the scenes with a simple example. Imagine an application that comprises a web front-end and a database. The YAML code snippet below represents a basic Kubernetes configuration for this scenario:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">apps/v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Deployment</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">webapp</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">replicas</span>: <span style="color:#ae81ff">3</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">matchLabels</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">app</span>: <span style="color:#ae81ff">webapp</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">template</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">labels</span>:
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">app</span>: <span style="color:#ae81ff">webapp</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">containers</span>:
+</span></span><span style="display:flex;"><span>      - <span style="color:#f92672">name</span>: <span style="color:#ae81ff">frontend</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">image</span>: <span style="color:#ae81ff">my-webapp-image:latest</span>
+</span></span><span style="display:flex;"><span>---
+</span></span><span style="display:flex;"><span><span style="color:#f92672">apiVersion</span>: <span style="color:#ae81ff">v1</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">kind</span>: <span style="color:#ae81ff">Service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">metadata</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">name</span>: <span style="color:#ae81ff">webapp-service</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">spec</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">selector</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">app</span>: <span style="color:#ae81ff">webapp</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">ports</span>:
+</span></span><span style="display:flex;"><span>    - <span style="color:#f92672">protocol</span>: <span style="color:#ae81ff">TCP</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">port</span>: <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">targetPort</span>: <span style="color:#ae81ff">8080</span>
+</span></span></code></pre></div><h2 id="conclusion-the-grand-performance">Conclusion: The Grand Performance<a hidden class="anchor" aria-hidden="true" href="#conclusion-the-grand-performance">#</a></h2>
+<p>Before the curtain falls, and just as a conductor puts in line all the musician to deliver ART, Kubernetes orchestrates containers to deliver reliable, scalable, and maintainable applications. I hope this article is a front-row seat to the orchestration of a container symphony. See you in the next one &lt;3</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2023 <a href="https://Mehdibenabdelkader.github.io/Flukadev/">FLUKA</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
