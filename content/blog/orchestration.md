@@ -1,5 +1,5 @@
 ---
-title: "Kubernetes Orchestrates Your Container Symphony: A Conductor's Tale"
+title: "The art of orchestrating containers"
 date: 2023-11-14T10:26:38+01:00
 draft: false
 ShowToc: true
