@@ -5,11 +5,11 @@ draft: false
 ShowToc: true
 ---
 
-Well good news, I started working on actual real world porjects (gotta leave the tutorial hell at some point), I'll make sure to share those as soon as possible. I got the chance to ask many people, explore many projects and gather valuable information that I am eager to implement. But today I want to talk about one thing that we can find in every project repository, an element that could make or break the developer's experience, yet very underrated and often overlooked : *A "Readme.md" file.*
+Well good news, I started working on actual real-world projects (gotta leave the tutorial hell at some point), I'll make sure to share those as soon as possible. I got the chance to ask many people, explore many projects, and gather valuable information I am eager to implement. But today I want to talk about one thing that we can find in every project repository, an element that could make or break the developer's experience, yet very underrated and often overlooked : *A "README.md" file.*
 
 In the world of software development, a well-written `README.md` file is the equivalent of a user manual for your code. It serves as the first point of contact for developers and users who come across your project, providing essential information to understand, use, and contribute to your work. 
 
-If it's this useful and this important, then why do we often overlook allocating time to actually write good documentation ? well simply because we often think tat the code is clear enough, that we don't have the time... in other word : laziness. (Which backfires very fast, true story).
+If it's this useful and this important, why do we often overlook allocating time to write good documentation? Well simply because we often think that the code is clear enough or that we don't have enough time. In other words: laziness. (Which backfires very fast, true story).
 
 ## So how do I write a README.md file ?
 
