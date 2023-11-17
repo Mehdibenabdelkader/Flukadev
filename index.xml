@@ -6,7 +6,16 @@
     <description>Recent content on FLUKA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Nov 2023 10:26:38 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Nov 2023 13:34:08 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Power of a Well-Crafted README.md</title>
+      <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/whywritereadmefiles/</link>
+      <pubDate>Fri, 17 Nov 2023 13:34:08 +0100</pubDate>
+      
+      <guid>https://Mehdibenabdelkader.github.io/Flukadev/blog/whywritereadmefiles/</guid>
+      <description>Well good news, I started working on actual real world porjects (gotta leave the tutorial hell at some point), I&amp;rsquo;ll make sure to share those as soon as possible. I got the chance to ask many people, explore many projects and gather valuable information that I am eager to implement. But today I want to talk about one thing that we can find in every project repository, an element that could make or break the developer&amp;rsquo;s experience, yet very underrated and often overlooked : A &amp;ldquo;Readme.</description>
+    </item>
+    
     <item>
       <title>The art of orchestrating containers</title>
       <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/orchestration/</link>
