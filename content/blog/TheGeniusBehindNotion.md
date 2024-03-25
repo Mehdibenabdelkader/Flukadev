@@ -1,7 +1,7 @@
 ---
 title: "The Genius Behind Notion"
 date: 2024-03-25T16:45:44Z
-draft: true
+draft: false
 ---
 
 # The genius behind notion
