@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Suricata | FLUKA</title>
+<meta name="keywords" content="">
+<meta name="description" content="Partie 1: Introduction Dans le paysage numérique actuel, protéger l&rsquo;infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d&rsquo;intrusion (IDS) jouent un rôle vital dans l&rsquo;identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l&rsquo;aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes.">
+<meta name="author" content="">
+<link rel="canonical" href="https://Mehdibenabdelkader.github.io/Flukadev/blog/suricata/">
+<link crossorigin="anonymous" href="/Flukadev/assets/css/stylesheet.5cfc680b1eeaeef9efbced92d46c2a9e876b72ee14fba85846afc4cff9e6e6f8.css" integrity="sha256-XPxoCx7q7vnvvO2S1Gwqnodrcu4U&#43;6hYRq/Ez/nm5vg=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="/Flukadev/assets/js/highlight.f413e19d0714851f6474e7ee9632408e58ac146fbdbe62747134bea2fa3415e0.js" integrity="sha256-9BPhnQcUhR9kdOfuljJAjlisFG&#43;9vmJ0cTS&#43;ovo0FeA="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://Mehdibenabdelkader.github.io/Flukadev/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/apple-touch-icon.png">
+<link rel="mask-icon" href="https://Mehdibenabdelkader.github.io/Flukadev/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KFZSHSXH46"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-KFZSHSXH46', { 'anonymize_ip': false });
+}
+</script>
+<meta property="og:title" content="Suricata" />
+<meta property="og:description" content="Partie 1: Introduction Dans le paysage numérique actuel, protéger l&rsquo;infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d&rsquo;intrusion (IDS) jouent un rôle vital dans l&rsquo;identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l&rsquo;aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://Mehdibenabdelkader.github.io/Flukadev/blog/suricata/" /><meta property="article:section" content="blog" />
+<meta property="article:published_time" content="2024-06-05T01:55:24+01:00" />
+<meta property="article:modified_time" content="2024-06-05T01:55:24+01:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Suricata"/>
+<meta name="twitter:description" content="Partie 1: Introduction Dans le paysage numérique actuel, protéger l&rsquo;infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d&rsquo;intrusion (IDS) jouent un rôle vital dans l&rsquo;identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l&rsquo;aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes."/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "My Blog",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Suricata",
+      "item": "https://Mehdibenabdelkader.github.io/Flukadev/blog/suricata/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Suricata",
+  "name": "Suricata",
+  "description": "Partie 1: Introduction Dans le paysage numérique actuel, protéger l\u0026rsquo;infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d\u0026rsquo;intrusion (IDS) jouent un rôle vital dans l\u0026rsquo;identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l\u0026rsquo;aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes.",
+  "keywords": [
+    
+  ],
+  "articleBody": "Partie 1: Introduction Dans le paysage numérique actuel, protéger l’infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d’intrusion (IDS) jouent un rôle vital dans l’identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l’aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes.\nQu’est-ce que Suricata? Suricata est un moteur avancé de détection des menaces réseau open-source développé par l’Open Information Security Foundation (OISF). Il fonctionne comme un système de détection d’intrusion (IDS), un système de prévention des intrusions (IPS) et un outil de surveillance de la sécurité réseau (NSM). Suricata est capable d’inspection approfondie des paquets, de détection d’anomalies basée sur les flux et d’utilisation de règles externes pour détecter les activités malveillantes. Il prend en charge divers protocoles et fournit une détection des menaces performante et évolutive.\nComparaison détaillée : IDS vs. IPS Système de Détection d’Intrusion (IDS)\nFonction : Surveille le trafic réseau pour détecter des activités suspectes et alerte les administrateurs. Types : Basé sur le réseau (NIDS) et basé sur l’hôte (HIDS). Mode : Passif ; ne bloque ni ne prévient les menaces. Déploiement : Souvent placé à un point de surveillance du réseau pour observer le trafic. Exemple : Suricata en mode IDS. Système de Prévention d’Intrusion (IPS)\nFonction : Surveille et empêche ou bloque activement les menaces détectées. Types : Basé sur le réseau (NIPS) et basé sur l’hôte (HIPS). Mode : Actif ; peut bloquer et atténuer les menaces en temps réel. Déploiement : En ligne avec le trafic réseau pour intercepter et analyser les paquets. Exemple : Suricata configuré pour bloquer le trafic malveillant. Différences Clés\nActivité : L’IDS ne fait que détecter et alerter, tandis que l’IPS détecte et bloque. Impact sur le Trafic : L’IDS n’a aucun impact direct sur le flux de trafic ; l’IPS peut affecter le flux de trafic en raison de sa nature active. Cas d’Utilisation : L’IDS est utilisé là où la visibilité est nécessaire sans intervention, tandis que l’IPS est utilisé dans des environnements nécessitant une atténuation active des menaces. Partie 2 : Installation et Configuration de Suricata 1. Mise à Jour du Système sudo apt-get update sudo apt-get upgrade Explication : Ces commandes mettent à jour la liste des paquets disponibles et mettent à jour tous les paquets installés vers leurs dernières versions. 2. Installation de Suricata sudo apt-get install suricata Explication : Cette commande installe Suricata à partir des dépôts officiels. 3. Configuration de l’Interface Réseau Éditez le fichier de configuration principal de Suricata : /etc/suricata/suricata.yaml.\nChemin : /etc/suricata/suricata.yaml Contenu Important : af-packet: - interface: eth0 cluster-id: 99 cluster-type: cluster_flow defrag: yes Explication : Cette configuration indique à Suricata de surveiller le trafic sur l’interface eth0. 4. Téléchargement des Règles sudo suricata-update Explication : Cette commande télécharge et met à jour les derniers ensembles de règles de la communauté Emerging Threats. 5. Démarrage de Suricata sudo systemctl start suricata sudo systemctl enable suricata Explication : Ces commandes démarrent le service Suricata et le configurent pour qu’il démarre automatiquement au démarrage du système. 6. Vérification de l’Installation sudo suricata -V Explication : Cette commande vérifie l’installation de Suricata et affiche la version installée. 7. Test de Suricata Pour tester Suricata, vous pouvez utiliser des outils comme nmap pour générer du trafic de test et vérifier si Suricata le détecte et le journalise.\n8. Analyse des Logs Les logs sont stockés dans /var/log/suricata/. Voici quelques fichiers importants :\nfast.log : Alertes rapides. eve.json : Logs détaillés en format JSON. stats.log : Statistiques de performance. 9. Fichiers de Configuration et leur Utilité /etc/suricata/suricata.yaml : Fichier principal de configuration. Configure les interfaces réseau, les règles, les journaux, etc. /var/log/suricata/ : Répertoire où Suricata stocke tous ses logs. Contient des fichiers comme fast.log, eve.json, et stats.log pour les alertes et les statistiques. Partie 3 : Tester Suricata avec testmynids 1. Introduction à testmynids testmynids est un script qui aide à tester les systèmes IDS comme Suricata en envoyant des modèles d’attaque connus et en observant s’ils sont détectés. Cet outil peut simuler diverses attaques pour s’assurer que Suricata est correctement configuré et opérationnel.\n2. Prérequis Assurez-vous que Suricata est installé et en cours d’exécution sur votre système. Vérifiez également que curl est installé, car il est utilisé par testmynids pour envoyer des modèles de test.\n3. Télécharger testmynids wget https://raw.githubusercontent.com/pevma/ids-rule-testing/master/testmynids.sh chmod +x testmynids.sh Explication : La première commande télécharge le script testmynids à partir de l’URL spécifiée. La deuxième commande rend le script exécutable. 4. Exécution du Script ./testmynids.sh Explication : Cette commande exécute le script testmynids. Le script enverra divers modèles de test à votre instance Suricata. 5. Analyse des Logs de Suricata Après avoir exécuté testmynids, vérifiez les journaux de Suricata pour voir si les attaques ont été détectées.\nEmplacement des Fichiers de Log : /var/log/suricata/ fast.log : Résumé rapide des alertes détectées. eve.json : Entrées de log détaillées au format JSON. 6. Commandes Exemples et Résultats Attendus Vérification de fast.log :\ncat /var/log/suricata/fast.log Explication : Cette commande affiche le contenu de fast.log, où vous devriez voir des entrées correspondant aux attaques de test envoyées par testmynids. Vérification de eve.json :\ncat /var/log/suricata/eve.json | jq . Explication : Cette commande utilise jq pour formater et afficher les journaux JSON de eve.json. Recherchez les entrées avec “alert” pour voir les détails des attaques détectées. 7. Vérification de la Détection Comparez les alertes dans fast.log et eve.json avec les résultats attendus du script testmynids. Chaque modèle de test envoyé par le script devrait correspondre à une alerte dans les journaux.\n8. Dépannage Aucune Alerte Détectée : Vérifiez que Suricata fonctionne sur la bonne interface. Vérifiez la configuration de suricata.yaml. Assurez-vous que les ensembles de règles sont à jour avec sudo suricata-update. Partie 4: Étapes pour Configurer des Règles de Désactivation et de Suppression pour Réduire les Faux Positifs avec Suricata 1. Introduction Les faux positifs peuvent nuire à l’efficacité d’un IDS. Suricata permet de configurer des règles de désactivation et de suppression pour réduire ces alertes non pertinentes.\n2. Désactivation des Règles Éditer le fichier suricata.yaml :\ndefault-rule-path: /etc/suricata/rules rule-files: - suricata.rules - disable.conf Explication : Ajoutez disable.conf dans la liste des fichiers de règles. Créer ou éditer disable.conf :\necho 'disable sid:' \u003e\u003e /etc/suricata/rules/disable.conf Explication : Cette commande désactive la règle spécifiée par son ID (sid). 3. Configuration des Règles de Suppression Créer ou éditer threshold.config : suppress gen_id 1, sig_id , track by_src, ip Explication : Cette règle supprime les alertes pour la règle spécifiée (sig_id) provenant d’une adresse IP particulière. 4. Redémarrer Suricata sudo systemctl restart suricata Explication : Redémarre Suricata pour appliquer les nouvelles configurations. 5. Vérification Analyser les logs : tail -f /var/log/suricata/fast.log Explication : Surveillez les logs pour vérifier que les faux positifs sont réduits. Conclusion ktbi conclusion l3ar\n",
+  "wordCount" : "1153",
+  "inLanguage": "en",
+  "datePublished": "2024-06-05T01:55:24+01:00",
+  "dateModified": "2024-06-05T01:55:24+01:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://Mehdibenabdelkader.github.io/Flukadev/blog/suricata/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "FLUKA",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://Mehdibenabdelkader.github.io/Flukadev/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://Mehdibenabdelkader.github.io/Flukadev/" accesskey="h" title="FLUKA (Alt + H)">FLUKA</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Suricata
+    </h1>
+    <div class="post-meta"><span title='2024-06-05 01:55:24 +0100 +0100'>June 5, 2024</span>&nbsp;·&nbsp;6 min
+
+</div>
+  </header> 
+  <div class="post-content"><h1 id="partie-1-introduction">Partie 1: Introduction<a hidden class="anchor" aria-hidden="true" href="#partie-1-introduction">#</a></h1>
+<p>Dans le paysage numérique actuel, protéger l&rsquo;infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d&rsquo;intrusion (IDS) jouent un rôle vital dans l&rsquo;identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l&rsquo;aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes.</p>
+<h1 id="quest-ce-que-suricata">Qu&rsquo;est-ce que Suricata?<a hidden class="anchor" aria-hidden="true" href="#quest-ce-que-suricata">#</a></h1>
+<p>Suricata est un moteur avancé de détection des menaces réseau open-source développé par l&rsquo;Open Information Security Foundation (OISF). Il fonctionne comme un système de détection d&rsquo;intrusion (IDS), un système de prévention des intrusions (IPS) et un outil de surveillance de la sécurité réseau (NSM). Suricata est capable d&rsquo;inspection approfondie des paquets, de détection d&rsquo;anomalies basée sur les flux et d&rsquo;utilisation de règles externes pour détecter les activités malveillantes. Il prend en charge divers protocoles et fournit une détection des menaces performante et évolutive.</p>
+<h1 id="comparaison-détaillée--ids-vs-ips">Comparaison détaillée : IDS vs. IPS<a hidden class="anchor" aria-hidden="true" href="#comparaison-détaillée--ids-vs-ips">#</a></h1>
+<p><strong>Système de Détection d&rsquo;Intrusion (IDS)</strong></p>
+<ul>
+<li><strong>Fonction</strong> : Surveille le trafic réseau pour détecter des activités suspectes et alerte les administrateurs.</li>
+<li><strong>Types</strong> : Basé sur le réseau (NIDS) et basé sur l&rsquo;hôte (HIDS).</li>
+<li><strong>Mode</strong> : Passif ; ne bloque ni ne prévient les menaces.</li>
+<li><strong>Déploiement</strong> : Souvent placé à un point de surveillance du réseau pour observer le trafic.</li>
+<li><strong>Exemple</strong> : Suricata en mode IDS.</li>
+</ul>
+<p><strong>Système de Prévention d&rsquo;Intrusion (IPS)</strong></p>
+<ul>
+<li><strong>Fonction</strong> : Surveille et empêche ou bloque activement les menaces détectées.</li>
+<li><strong>Types</strong> : Basé sur le réseau (NIPS) et basé sur l&rsquo;hôte (HIPS).</li>
+<li><strong>Mode</strong> : Actif ; peut bloquer et atténuer les menaces en temps réel.</li>
+<li><strong>Déploiement</strong> : En ligne avec le trafic réseau pour intercepter et analyser les paquets.</li>
+<li><strong>Exemple</strong> : Suricata configuré pour bloquer le trafic malveillant.</li>
+</ul>
+<p><strong>Différences Clés</strong></p>
+<ul>
+<li><strong>Activité</strong> : L&rsquo;IDS ne fait que détecter et alerter, tandis que l&rsquo;IPS détecte et bloque.</li>
+<li><strong>Impact sur le Trafic</strong> : L&rsquo;IDS n&rsquo;a aucun impact direct sur le flux de trafic ; l&rsquo;IPS peut affecter le flux de trafic en raison de sa nature active.</li>
+<li><strong>Cas d&rsquo;Utilisation</strong> : L&rsquo;IDS est utilisé là où la visibilité est nécessaire sans intervention, tandis que l&rsquo;IPS est utilisé dans des environnements nécessitant une atténuation active des menaces.</li>
+</ul>
+<h1 id="partie-2--installation-et-configuration-de-suricata">Partie 2 : Installation et Configuration de Suricata<a hidden class="anchor" aria-hidden="true" href="#partie-2--installation-et-configuration-de-suricata">#</a></h1>
+<h4 id="1-mise-à-jour-du-système">1. Mise à Jour du Système<a hidden class="anchor" aria-hidden="true" href="#1-mise-à-jour-du-système">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get update
+</span></span><span style="display:flex;"><span>sudo apt-get upgrade
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Ces commandes mettent à jour la liste des paquets disponibles et mettent à jour tous les paquets installés vers leurs dernières versions.</li>
+</ul>
+<h4 id="2-installation-de-suricata">2. Installation de Suricata<a hidden class="anchor" aria-hidden="true" href="#2-installation-de-suricata">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install suricata
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande installe Suricata à partir des dépôts officiels.</li>
+</ul>
+<h4 id="3-configuration-de-linterface-réseau">3. Configuration de l&rsquo;Interface Réseau<a hidden class="anchor" aria-hidden="true" href="#3-configuration-de-linterface-réseau">#</a></h4>
+<p>Éditez le fichier de configuration principal de Suricata : <code>/etc/suricata/suricata.yaml</code>.</p>
+<ul>
+<li><strong>Chemin</strong> : <code>/etc/suricata/suricata.yaml</code></li>
+<li><strong>Contenu Important</strong> :
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">af-packet</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#f92672">interface</span>: <span style="color:#ae81ff">eth0</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cluster-id</span>: <span style="color:#ae81ff">99</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">cluster-type</span>: <span style="color:#ae81ff">cluster_flow</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">defrag</span>: <span style="color:#66d9ef">yes</span>
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette configuration indique à Suricata de surveiller le trafic sur l&rsquo;interface <code>eth0</code>.</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-téléchargement-des-règles">4. Téléchargement des Règles<a hidden class="anchor" aria-hidden="true" href="#4-téléchargement-des-règles">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo suricata-update
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande télécharge et met à jour les derniers ensembles de règles de la communauté Emerging Threats.</li>
+</ul>
+<h4 id="5-démarrage-de-suricata">5. Démarrage de Suricata<a hidden class="anchor" aria-hidden="true" href="#5-démarrage-de-suricata">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo systemctl start suricata
+</span></span><span style="display:flex;"><span>sudo systemctl enable suricata
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Ces commandes démarrent le service Suricata et le configurent pour qu&rsquo;il démarre automatiquement au démarrage du système.</li>
+</ul>
+<h4 id="6-vérification-de-linstallation">6. Vérification de l&rsquo;Installation<a hidden class="anchor" aria-hidden="true" href="#6-vérification-de-linstallation">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo suricata -V
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande vérifie l&rsquo;installation de Suricata et affiche la version installée.</li>
+</ul>
+<h4 id="7-test-de-suricata">7. Test de Suricata<a hidden class="anchor" aria-hidden="true" href="#7-test-de-suricata">#</a></h4>
+<p>Pour tester Suricata, vous pouvez utiliser des outils comme <code>nmap</code> pour générer du trafic de test et vérifier si Suricata le détecte et le journalise.</p>
+<h4 id="8-analyse-des-logs">8. Analyse des Logs<a hidden class="anchor" aria-hidden="true" href="#8-analyse-des-logs">#</a></h4>
+<p>Les logs sont stockés dans <code>/var/log/suricata/</code>. Voici quelques fichiers importants :</p>
+<ul>
+<li><strong>fast.log</strong> : Alertes rapides.</li>
+<li><strong>eve.json</strong> : Logs détaillés en format JSON.</li>
+<li><strong>stats.log</strong> : Statistiques de performance.</li>
+</ul>
+<h4 id="9-fichiers-de-configuration-et-leur-utilité">9. Fichiers de Configuration et leur Utilité<a hidden class="anchor" aria-hidden="true" href="#9-fichiers-de-configuration-et-leur-utilité">#</a></h4>
+<ul>
+<li><strong><code>/etc/suricata/suricata.yaml</code></strong> : Fichier principal de configuration. Configure les interfaces réseau, les règles, les journaux, etc.</li>
+<li><strong><code>/var/log/suricata/</code></strong> : Répertoire où Suricata stocke tous ses logs. Contient des fichiers comme <code>fast.log</code>, <code>eve.json</code>, et <code>stats.log</code> pour les alertes et les statistiques.</li>
+</ul>
+<h1 id="partie-3--tester-suricata-avec-testmynids">Partie 3 : Tester Suricata avec <code>testmynids</code><a hidden class="anchor" aria-hidden="true" href="#partie-3--tester-suricata-avec-testmynids">#</a></h1>
+<h4 id="1-introduction-à-testmynids">1. Introduction à <code>testmynids</code><a hidden class="anchor" aria-hidden="true" href="#1-introduction-à-testmynids">#</a></h4>
+<p><code>testmynids</code> est un script qui aide à tester les systèmes IDS comme Suricata en envoyant des modèles d&rsquo;attaque connus et en observant s&rsquo;ils sont détectés. Cet outil peut simuler diverses attaques pour s&rsquo;assurer que Suricata est correctement configuré et opérationnel.</p>
+<h4 id="2-prérequis">2. Prérequis<a hidden class="anchor" aria-hidden="true" href="#2-prérequis">#</a></h4>
+<p>Assurez-vous que Suricata est installé et en cours d&rsquo;exécution sur votre système. Vérifiez également que <code>curl</code> est installé, car il est utilisé par <code>testmynids</code> pour envoyer des modèles de test.</p>
+<h4 id="3-télécharger-testmynids">3. Télécharger <code>testmynids</code><a hidden class="anchor" aria-hidden="true" href="#3-télécharger-testmynids">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>wget https://raw.githubusercontent.com/pevma/ids-rule-testing/master/testmynids.sh
+</span></span><span style="display:flex;"><span>chmod +x testmynids.sh
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : La première commande télécharge le script <code>testmynids</code> à partir de l&rsquo;URL spécifiée. La deuxième commande rend le script exécutable.</li>
+</ul>
+<h4 id="4-exécution-du-script">4. Exécution du Script<a hidden class="anchor" aria-hidden="true" href="#4-exécution-du-script">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>./testmynids.sh
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande exécute le script <code>testmynids</code>. Le script enverra divers modèles de test à votre instance Suricata.</li>
+</ul>
+<h4 id="5-analyse-des-logs-de-suricata">5. Analyse des Logs de Suricata<a hidden class="anchor" aria-hidden="true" href="#5-analyse-des-logs-de-suricata">#</a></h4>
+<p>Après avoir exécuté <code>testmynids</code>, vérifiez les journaux de Suricata pour voir si les attaques ont été détectées.</p>
+<ul>
+<li><strong>Emplacement des Fichiers de Log</strong> : <code>/var/log/suricata/</code>
+<ul>
+<li><strong>fast.log</strong> : Résumé rapide des alertes détectées.</li>
+<li><strong>eve.json</strong> : Entrées de log détaillées au format JSON.</li>
+</ul>
+</li>
+</ul>
+<h4 id="6-commandes-exemples-et-résultats-attendus">6. Commandes Exemples et Résultats Attendus<a hidden class="anchor" aria-hidden="true" href="#6-commandes-exemples-et-résultats-attendus">#</a></h4>
+<ul>
+<li>
+<p><strong>Vérification de <code>fast.log</code></strong> :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat /var/log/suricata/fast.log
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande affiche le contenu de <code>fast.log</code>, où vous devriez voir des entrées correspondant aux attaques de test envoyées par <code>testmynids</code>.</li>
+</ul>
+</li>
+<li>
+<p><strong>Vérification de <code>eve.json</code></strong> :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cat /var/log/suricata/eve.json | jq .
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande utilise <code>jq</code> pour formater et afficher les journaux JSON de <code>eve.json</code>. Recherchez les entrées avec &ldquo;alert&rdquo; pour voir les détails des attaques détectées.</li>
+</ul>
+</li>
+</ul>
+<h4 id="7-vérification-de-la-détection">7. Vérification de la Détection<a hidden class="anchor" aria-hidden="true" href="#7-vérification-de-la-détection">#</a></h4>
+<p>Comparez les alertes dans <code>fast.log</code> et <code>eve.json</code> avec les résultats attendus du script <code>testmynids</code>. Chaque modèle de test envoyé par le script devrait correspondre à une alerte dans les journaux.</p>
+<h4 id="8-dépannage">8. Dépannage<a hidden class="anchor" aria-hidden="true" href="#8-dépannage">#</a></h4>
+<ul>
+<li><strong>Aucune Alerte Détectée</strong> :
+<ul>
+<li>Vérifiez que Suricata fonctionne sur la bonne interface.</li>
+<li>Vérifiez la configuration de <code>suricata.yaml</code>.</li>
+<li>Assurez-vous que les ensembles de règles sont à jour avec <code>sudo suricata-update</code>.</li>
+</ul>
+</li>
+</ul>
+<h1 id="partie-4-étapes-pour-configurer-des-règles-de-désactivation-et-de-suppression-pour-réduire-les-faux-positifs-avec-suricata">Partie 4: Étapes pour Configurer des Règles de Désactivation et de Suppression pour Réduire les Faux Positifs avec Suricata<a hidden class="anchor" aria-hidden="true" href="#partie-4-étapes-pour-configurer-des-règles-de-désactivation-et-de-suppression-pour-réduire-les-faux-positifs-avec-suricata">#</a></h1>
+<h4 id="1-introduction">1. Introduction<a hidden class="anchor" aria-hidden="true" href="#1-introduction">#</a></h4>
+<p>Les faux positifs peuvent nuire à l&rsquo;efficacité d&rsquo;un IDS. Suricata permet de configurer des règles de désactivation et de suppression pour réduire ces alertes non pertinentes.</p>
+<h4 id="2-désactivation-des-règles">2. Désactivation des Règles<a hidden class="anchor" aria-hidden="true" href="#2-désactivation-des-règles">#</a></h4>
+<ul>
+<li>
+<p><strong>Éditer le fichier <code>suricata.yaml</code></strong> :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">default-rule-path</span>: <span style="color:#ae81ff">/etc/suricata/rules</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">rule-files</span>:
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">suricata.rules</span>
+</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">disable.conf</span>
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Ajoutez <code>disable.conf</code> dans la liste des fichiers de règles.</li>
+</ul>
+</li>
+<li>
+<p><strong>Créer ou éditer <code>disable.conf</code></strong> :</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>echo <span style="color:#e6db74">&#39;disable sid:&lt;rule_id&gt;&#39;</span> &gt;&gt; /etc/suricata/rules/disable.conf
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette commande désactive la règle spécifiée par son ID (sid).</li>
+</ul>
+</li>
+</ul>
+<h4 id="3-configuration-des-règles-de-suppression">3. Configuration des Règles de Suppression<a hidden class="anchor" aria-hidden="true" href="#3-configuration-des-règles-de-suppression">#</a></h4>
+<ul>
+<li><strong>Créer ou éditer <code>threshold.config</code></strong> :
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>suppress gen_id 1, sig_id &lt;rule_id&gt;, track by_src, ip &lt;ip_address&gt;
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Cette règle supprime les alertes pour la règle spécifiée (sig_id) provenant d&rsquo;une adresse IP particulière.</li>
+</ul>
+</li>
+</ul>
+<h4 id="4-redémarrer-suricata">4. Redémarrer Suricata<a hidden class="anchor" aria-hidden="true" href="#4-redémarrer-suricata">#</a></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo systemctl restart suricata
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Redémarre Suricata pour appliquer les nouvelles configurations.</li>
+</ul>
+<h4 id="5-vérification">5. Vérification<a hidden class="anchor" aria-hidden="true" href="#5-vérification">#</a></h4>
+<ul>
+<li><strong>Analyser les logs</strong> :
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>tail -f /var/log/suricata/fast.log
+</span></span></code></pre></div><ul>
+<li><strong>Explication</strong> : Surveillez les logs pour vérifier que les faux positifs sont réduits.</li>
+</ul>
+</li>
+</ul>
+<h3 id="conclusion">Conclusion<a hidden class="anchor" aria-hidden="true" href="#conclusion">#</a></h3>
+<p>ktbi conclusion l3ar</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://Mehdibenabdelkader.github.io/Flukadev/">FLUKA</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
