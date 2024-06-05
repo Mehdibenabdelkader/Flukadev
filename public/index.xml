@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>FLUKA</title>
+    <link>http://localhost:1313/Flukadev/</link>
+    <description>Recent content on FLUKA</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Mar 2024 16:45:44 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/Flukadev/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Genius Behind Notion</title>
+      <link>http://localhost:1313/Flukadev/blog/thegeniusbehindnotion/</link>
+      <pubDate>Mon, 25 Mar 2024 16:45:44 +0000</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/thegeniusbehindnotion/</guid>
+      <description>The genius behind notion As a tech enthusiast, I&amp;rsquo;m all about building things, exploring new technologies, trends, and finding ways to optimize and automate processes. I mean, after all, time is money, and who wouldn&amp;rsquo;t want a system to save currency? Therefore, I&amp;rsquo;ve been on the hunt for a note-taking system that caters to my needs without being cumbersome to access or maintain, or overall too complicated. Now, some might already know that I&amp;rsquo;m a big fan of Obsidian—it&amp;rsquo;s my note-taking app of choice—but that&amp;rsquo;s not the focus here.</description>
+    </item>
+    <item>
+      <title>The Power of a Well-Crafted README.md</title>
+      <link>http://localhost:1313/Flukadev/blog/whywritereadmefiles/</link>
+      <pubDate>Fri, 17 Nov 2023 13:34:08 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/whywritereadmefiles/</guid>
+      <description>Well good news, I started working on actual real-world projects (gotta leave the tutorial hell at some point), I&amp;rsquo;ll make sure to share those as soon as possible. I got the chance to ask many people, explore many projects, and gather valuable information I am eager to implement. But today I want to talk about one thing that we can find in every project repository, an element that could make or break the developer&amp;rsquo;s experience, yet very underrated and often overlooked : A &amp;ldquo;README.</description>
+    </item>
+    <item>
+      <title>The art of orchestrating containers</title>
+      <link>http://localhost:1313/Flukadev/blog/orchestration/</link>
+      <pubDate>Tue, 14 Nov 2023 10:26:38 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/orchestration/</guid>
+      <description>Introduction: Setting the Stage Imagine an orchestra preparing for a grand performance. Each musician, with their unique instrument, needs to play in harmony to create a masterpiece. Now, picture this scene without a conductor. Every musician is freestyling, obviously playing out of sync, resulting in a thunderstorm.&#xA;Now let&amp;rsquo;s imagine that this orchestra is our app, each service (inside a container ofc) is a musician trying to contribute to the symphony of delivering a product, in this case we need a maestro to put the cherry on top and deliver art to our end user.</description>
+    </item>
+    <item>
+      <title>Book Review : Build Your Second Brain</title>
+      <link>http://localhost:1313/Flukadev/blog/notetaking/</link>
+      <pubDate>Thu, 09 Nov 2023 16:32:11 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/notetaking/</guid>
+      <description>I decided to take a break from learn the technicalities and take a look at the systems and tools I set in place to make my journey easier, after all Abraham Lincoln was quoted as saying :&#xA;“ Give me six hours to chop down a tree and I will spend the first four sharpening the ax. ”&#xA;Under the light of this idea I decided to read a book (Very Big deal, I rarely read), &amp;ldquo;Building a Second Brain&amp;rdquo; is a book by Tiago Forte that explores the concept of creating a digital system to augment your thinking and productivity.</description>
+    </item>
+    <item>
+      <title>Today I learned : Containers</title>
+      <link>http://localhost:1313/Flukadev/blog/containers/</link>
+      <pubDate>Tue, 07 Nov 2023 13:34:04 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/containers/</guid>
+      <description>Another day, and another buzzword to learn. As I am learning more and more about new concepts I find out that some topics I used to think are impossible to grasp - because of confusing they can be - are pretty simple (even fun sometimes) when you put you&amp;rsquo;re mind to it and approach it the right way, Today&amp;rsquo;s topic will be all about containers. First I thought this was just a funny comparaison that people used to explain how to deliver software, but turns out it&amp;rsquo;s actually a thing : the same way a we ship goodies from a country to a country, we can ship software (the computer goodies) from a computer to another.</description>
+    </item>
+    <item>
+      <title>Load Balancing : A piece of cake</title>
+      <link>http://localhost:1313/Flukadev/blog/loadbalancing/</link>
+      <pubDate>Sat, 04 Nov 2023 08:55:23 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/loadbalancing/</guid>
+      <description>if modern infrastructure design was a birthday party, Load balancing would be sharing a cake, and you can&amp;rsquo;t have a party without cake ofc (I am sorry I can&amp;rsquo;t help it I love these analogies), ensuring high availability and efficient distribution of incoming traffic across multiple servers or instances, in other words making sure that everyone gets a slice. Amazon Web Services (AWS) provides two popular load balancer services: the Application Load Balancer (ALB) and the Network Load Balancer (NLB).</description>
+    </item>
+    <item>
+      <title>Infrastructure as Code (IaC): A Beginner&#39;s Guide</title>
+      <link>http://localhost:1313/Flukadev/blog/iac/</link>
+      <pubDate>Wed, 25 Oct 2023 10:46:08 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/iac/</guid>
+      <description>Since the day I decided to embark on the journey to discover the field of devops, Infrastructure as Code (IaC) was a buzzword I kept hearing around, a word I never understood exactly what it means, well till today. I usually just hold a conversation with someone and start to lose interest when they mention anything related to methods or tools of maintaining an infrastructure because to me that concept was a bit too far-fetched (and pretty overwhelming tbh).</description>
+    </item>
+    <item>
+      <title>Today I Learned : Monolith vs Microservices</title>
+      <link>http://localhost:1313/Flukadev/blog/tilmonolithvsmicroservices/</link>
+      <pubDate>Wed, 18 Oct 2023 17:33:30 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/tilmonolithvsmicroservices/</guid>
+      <description>&amp;ldquo;There are only two ways to lead: you either divide and conquer, or you build and unite.&amp;rdquo;&#xA;This concept of dividing to conquer was a staple in the course of my academic life, I found it very intresting how such an idea can be applied to multiple fields of study, even in life problems. And on my journey towards becoming a better devops enginner, I learned that this concept is the base of a whole architecture, and the difference between monolithic applications and microservices.</description>
+    </item>
+    <item>
+      <title>From UI/UX Design to Devops : A leap of faith</title>
+      <link>http://localhost:1313/Flukadev/blog/fromuiuxtodevops/</link>
+      <pubDate>Thu, 12 Oct 2023 16:10:54 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/fromuiuxtodevops/</guid>
+      <description>My Journey: Transitioning from UI/UX Design to DevOps Engineering Introduction Life often presents us with unexpected opportunities for growth and change. It pushes you into paths you never thought you&amp;rsquo;d walk in, and my path took from being a seasoned UI/UX designer to becoming a aspiring and pationate DevOps engineer, it&amp;rsquo;s a chance for bothseeking fresh challenges, exploring new horizons and pushing my limits. In this blog post, I&amp;rsquo;ll share my story of why I decided to make this career switch, the surprising similarities I found between the two fields, and the hurdles I had and still have to overcome to become the best at what I do.</description>
+    </item>
+    <item>
+      <title>Beyond the tools: Why Understanding UI Design Theory Matters</title>
+      <link>http://localhost:1313/Flukadev/blog/uitoolsvstheory/</link>
+      <pubDate>Wed, 06 Sep 2023 09:50:51 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/uitoolsvstheory/</guid>
+      <description>Lately I received many questions concerning Ui design and got to speak to many people about the topic, and that&amp;rsquo;s due to User Interface (UI) design playing a pivotal role in creating engaging, user-friendly experiences across various platforms and devices. And the pattern I always notice is the temptation to dive straight into learning the latest design tools and software, neglecting the importance of understanding UI design theory which can be a more strategic and enduring approach.</description>
+    </item>
+    <item>
+      <title>UX Insights from a Wedding</title>
+      <link>http://localhost:1313/Flukadev/blog/uxtipsfromawedding/</link>
+      <pubDate>Sun, 03 Sep 2023 23:49:50 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/uxtipsfromawedding/</guid>
+      <description>As someone who draws inspiration from the real world, I find myself constantly observing life&amp;rsquo;s intricacies. I&amp;rsquo;m on a quest to become a better UI/UX Designer, a more diligent student, and a more compassionate human being in general. Yesterday I had the pleasure of attending a wedding – a celebration brimming with delectable food, enchanting music, and countless lessons waiting to be learned.&#xA;Research is Crucial: The Surprising Fashion Fiasco The morning of the wedding dawned, and I was brimming with excitement, ready to unveil my carefully chosen outfit: sleek black pants paired with a crisply ironed white shirt.</description>
+    </item>
+    <item>
+      <title>The Story Behind My First Blog</title>
+      <link>http://localhost:1313/Flukadev/blog/myfirstblogpost/</link>
+      <pubDate>Sat, 26 Aug 2023 02:38:35 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/blog/myfirstblogpost/</guid>
+      <description>In the vast digital landscape of the internet, where humanity&amp;rsquo;s thoughts, ideas, and experiences converge, there&amp;rsquo;s something truly magical about carving out your own little corner to share your voice, even though it might appear as another droplet in the a never ending digital sea. Writing a blog is far more than just slapping words on a screen; it&amp;rsquo;s about embracing creativity, the itch to connect and the desire to share with others.</description>
+    </item>
+    <item>
+      <title>MyFirstBlogPost</title>
+      <link>http://localhost:1313/Flukadev/docs/myfirstblogpost/</link>
+      <pubDate>Sat, 26 Aug 2023 02:35:56 +0100</pubDate>
+      <guid>http://localhost:1313/Flukadev/docs/myfirstblogpost/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Who am i ?</title>
+      <link>http://localhost:1313/Flukadev/about/aboutpage/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/Flukadev/about/aboutpage/</guid>
+      <description>can&amp;rsquo;t wait to share more about me working on it, come back soon&#xA;Another line just to be sure</description>
+    </item>
+  </channel>
+</rss>
