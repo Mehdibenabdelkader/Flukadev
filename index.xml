@@ -6,16 +6,7 @@
     <description>Recent content on FLUKA</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 05 Jun 2024 01:55:24 +0100</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Suricata</title>
-      <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/suricata/</link>
-      <pubDate>Wed, 05 Jun 2024 01:55:24 +0100</pubDate>
-      
-      <guid>https://Mehdibenabdelkader.github.io/Flukadev/blog/suricata/</guid>
-      <description>Partie 1: Introduction Dans le paysage numérique actuel, protéger l&amp;rsquo;infrastructure réseau contre les cybermenaces est crucial. Les systèmes de détection d&amp;rsquo;intrusion (IDS) jouent un rôle vital dans l&amp;rsquo;identification et la mitigation de ces menaces. Suricata, un puissant moteur IDS/IPS/NSM open-source, est largement utilisé pour la détection des menaces réseau en temps réel. Ce rapport fournit un guide complet pour configurer un IDS à l&amp;rsquo;aide de Suricata, détaillant chaque étape et expliquant la fonctionnalité des différentes commandes.</description>
-    </item>
-    
+    <lastBuildDate>Mon, 25 Mar 2024 16:45:44 +0000</lastBuildDate><atom:link href="https://Mehdibenabdelkader.github.io/Flukadev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>The Genius Behind Notion</title>
       <link>https://Mehdibenabdelkader.github.io/Flukadev/blog/thegeniusbehindnotion/</link>
